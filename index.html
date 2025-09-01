@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rafael & Lorena — Nosso Amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #ffdde1;
+      --bg2: #ee9ca7;
+      --card: rgba(255,255,255,0.85);
+      --accent: #e63946;
+      --accent2: #ff6b6b;
+      --text: #2d3436;
+    }
+    *{ box-sizing: border-box; }
+    html, body{
+      height:100%;
+      margin:0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+    }
+    body{
+      /* dreamy gradient */
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* floating hearts background */
+    .hearts{
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .35;
+      filter: blur(0.3px);
+    }
+    .heart{
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      transform: rotate(45deg);
+      background: var(--accent2);
+      animation: floatUp linear infinite;
+      border-radius: 2px;
+    }
+    .heart:before, .heart:after{
+      content:"";
+      position:absolute;
+      width: 18px;
+      height: 18px;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .heart:before{ left:-9px; }
+    .heart:after{ top:-9px; }
+
+    @keyframes floatUp{
+      from{ transform: translateY(110vh) rotate(45deg) scale(0.8); opacity: .6; }
+      to{ transform: translateY(-10vh) rotate(45deg) scale(1.2); opacity: 0; }
+    }
+
+    main{
+      position: relative;
+      z-index: 1;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .wrap{
+      width: min(1100px, 96vw);
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    @media (max-width: 900px){
+      .wrap{ grid-template-columns: 1fr; }
+    }
+    .title{
+      text-align: center;
+      margin: 0;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(42px, 6vw, 80px);
+      color: var(--accent);
+      text-shadow: 0 2px 0 rgba(0,0,0,.06);
+      letter-spacing: .5px;
+    }
+    .subtitle{
+      text-align:center;
+      margin-top:-8px;
+      font-weight: 300;
+      letter-spacing: .3px;
+    }
+    .card{
+      background: var(--card);
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      padding: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .counter{
+      display: grid;
+      place-items: center;
+      gap: 10px;
+      padding: 28px;
+    }
+    .days{
+      font-size: clamp(48px, 10vw, 120px);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .since{
+      font-size: 14px;
+      opacity: .7;
+      margin-top: -10px;
+    }
+    .photo{
+      overflow: hidden;
+      border-radius: 28px;
+    }
+    .photo img{
+      display:block;
+      max-width:100%;
+      width:100%;
+      height:auto;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    .poem{
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(24px, 3.2vw, 40px);
+      line-height: 1.4;
+      text-align: center;
+      color:#b5173a;
+      padding: 10px 12px 0;
+    }
+    .footer{
+      text-align:center;
+      font-size: 12px;
+      opacity:.65;
+      margin-top: 12px;
+    }
+    /* cute button */
+    .btn{
+      display:inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration:none;
+      color:white;
+      background: linear-gradient(135deg, #ff7180, #ff3d57);
+      box-shadow: 0 8px 18px rgba(255, 61, 87, .35);
+      font-weight:600;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(255,61,87,.4); }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+  <main>
+    <div class="wrap">
+      <section class="card counter">
+        <h1 class="title">Rafael &amp; Lorena</h1>
+        <p class="subtitle">Contando cada dia desde <strong>15/04/2025</strong></p>
+        <div class="days" id="days">0</div>
+        <div class="since" id="since"></div>
+        <a class="btn" href="#poema" aria-label="Ir para o poema">Ver o poema</a>
+      </section>
+      <section class="photo">
+        <img src="rafael_lorena.jpg.jpeg" alt="Rafael e Lorena sorrindo em uma moldura de festa.">
+      </section>
+      <section class="card" id="poema" style="grid-column: 1 / -1;">
+        <div class="poem">
+          Em cada amanhecer eu te escolho,<br/>
+          no riso fácil, no abraço que acalma.<br/>
+          Nosso amor é casa — doce e segura —<br/>
+          onde o tempo repousa e sorri na alma.<br/>
+          <br/>
+          Se o mundo for grande, vamos juntos;<br/>
+          se for pequeno, a gente faz caber.<br/>
+          Porque contigo, meu bem, cada dia<br/>
+          é um “pra sempre” nascendo pra viver.
+        </div>
+        <p class="footer">Com carinho, desde 15/04/2025.</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // -------- Days Counter --------
+    function startOfDay(d){ d.setHours(0,0,0,0); return d; }
+    const start = startOfDay(new Date(2025, 3, 15)); // 15/04/2025 (mês começa em 0)
+    function updateDays(){
+      const today = startOfDay(new Date());
+      const diff = today - start;
+      const days = Math.floor(diff / (1000*60*60*24));
+      document.getElementById('days').textContent = days;
+      const since = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'full' }).format(start);
+      document.getElementById('since').textContent = "Juntos desde " + since;
+    }
+    updateDays();
+    // Atualiza à meia-noite local
+    setInterval(updateDays, 60 * 1000);
+
+    // -------- Floating Hearts --------
+    const hearts = document.getElementById('hearts');
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      const size = 10 + Math.random()*18;
+      h.style.width = size+'px';
+      h.style.height = size+'px';
+      h.style.left = Math.random()*100 + 'vw';
+      const duration = 7 + Math.random()*9;
+      h.style.animationDuration = duration + 's';
+      h.style.opacity = 0.25 + Math.random()*0.5;
+      hearts.appendChild(h);
+      setTimeout(()=> h.remove(), duration*1000);
+    }
+    setInterval(spawnHeart, 240);
+    for(let i=0;i<30;i++) spawnHeart();
+  </script>
+</body>
+</html>
